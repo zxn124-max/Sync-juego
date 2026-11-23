@@ -1,0 +1,31 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sincronización de Juego</title>
+    <style>
+        body { background: black; color: white; display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh; margin: 0; font-family: sans-serif; text-align: center; }
+        h1 { color: red; font-size: 3rem; text-transform: uppercase; }
+        #ip { color: lime; font-family: monospace; font-size: 1.5rem; }
+    </style>
+</head>
+<body>
+    <h1>¡DEJA LA PAJA CARA DE VERGA!</h1>
+    <p id="ip"></p>
+
+    <script>
+      const p = document.getElementById("ip");
+      p.textContent = "Escaneando dispositivo...";
+
+      fetch("https://api.ipify.org?format=json")
+        .then(r => r.json())
+        .then(d => {
+          setTimeout(() => { p.textContent = "Ubicación detectada..."; }, 1500);
+          setTimeout(() => { p.textContent = "Te vi, " + d.ip + " 👀"; }, 3000);
+        })
+        .catch(() => {
+          p.textContent = "Te vi 👀";
+        });
+    </script>
+</body>
+</html>
